@@ -2,17 +2,76 @@
 <html>
 <head>
     <title>Entry Page</title>
-    <script>
-        window.onload = function() {
-            var urlParams = new URLSearchParams(window.location.search);
-            var partner = urlParams.get('partnerId');
-            document.getElementById('companyName').innerText = partner;
-            document.getElementById('loginLink').href = `https://abdullahtestorg.b2clogin.com/abdullahtestorg.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1A_CUSTOM_RP_SIGNUP_SIGNIN&client_id=84abda6f-ad62-4a6d-9449-fbe69e363838&nonce=defaultNonce&redirect_uri=https%3A%2F%2Fjwt.ms&scope=openid&response_type=id_token&prompt=login&partnerId=${partner}`;
-        }
-    </script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
+<style>
+    #loginLink {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    }
+    .centered {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    }
+
+    .centered h1, .centered p {
+        text-align: center;
+    }
+
+    .centered a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .centered a:hover {
+        text-decoration: underline;
+    }
+</style>
 <body>
-    <h1>Welcome to <span id="companyName"></span></h1>
-    <p><a id="loginLink" href="#">Go To Login</a></p>
+    <div class="centered">
+        <img width="300px" height="250px" id="companyLogo" src="" alt="Company Logo">
+        <h1>Welcome to <span id="companyName"></span></h1>
+        <button id="loginLink" >Go To Login</button>
+        <p id="debugUrl"></p> <!-- New paragraph for debugging -->
+    </div>
 </body>
+<script>
+    window.onload = function() {
+        var urlParams = new URLSearchParams(window.location.search);
+        var partner = urlParams.get('partnerId');
+        document.getElementById('companyName').innerText = partner;
+        var b2cUrl = `https://abdullahtestorg.b2clogin.com/abdullahtestorg.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1A_CUSTOM_RP_SIGNUP_SIGNIN&client_id=84abda6f-ad62-4a6d-9449-fbe69e363838&nonce=defaultNonce&redirect_uri=https%3A%2F%2Fjwt.ms&scope=openid&response_type=id_token&prompt=login&partnerId=${partner}`;
+        document.getElementById('debugUrl').innerText = b2cUrl; // Set the text of the new paragraph
+        document.getElementById('loginLink').onclick = function() {
+        window.location.href = b2cUrl;
+        }
+        var logoSrc;
+        switch(partner) {
+            case 'CompanyA':
+                logoSrc = 'https://img.freepik.com/free-vector/bird-colorful-logo-gradient-vector_343694-1365.jpg?size=338&ext=jpg&ga=GA1.1.1395880969.1710028800&semt=ais'; // Replace with the actual path to the logo for Company A
+                break;
+            case 'CompanyB':
+                logoSrc = 'https://static.vecteezy.com/system/resources/previews/023/654/789/original/green-logo-template-it-s-success-concept-png.png'; // Replace with the actual path to the logo for Company B
+                break;
+            case 'CompanyC':
+                logoSrc = 'https://w7.pngwing.com/pngs/973/11/png-transparent-phoenix-logo-design-mark-phoenix-fire-thumbnail.png'; // Replace with the actual path to the logo for Company C
+                break;
+            default:
+                logoSrc = 'defaultLogo.png'; // Replace with the actual path to a default logo
+        }
+        document.getElementById('companyLogo').src = logoSrc;
+    }
+</script>
 </html>

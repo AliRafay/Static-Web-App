@@ -3,13 +3,78 @@
 <head>
     <title>Home Page</title>
 </head>
+<style>
+    .centered {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+}
+
+.centered ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.centered ul li {
+    margin: 10px 0;
+}
+
+.centered ul li a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.centered ul li a:hover {
+    text-decoration: underline;
+}
+    body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+}
+
+#logo {
+    width: 100px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin: 10px 0;
+}
+
+ul li a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+ul li a:hover {
+    text-decoration: underline;
+}
+</style>
 <body>
-    <h1>Welcome to our website</h1>
-    <p>Select a company to proceed:</p>
-    <ul>
-        <li><a href="/entry?partner=companyA">Company A</a></li>
-        <li><a href="/entry?partner=companyB">Company B</a></li>
-        <li><a href="/entry?partner=companyC">Company C</a></li>
-    </ul>
+    <header>
+        <img src="https://img.freepik.com/premium-vector/minimal-agency-logo-design-with-two-color-white-background-premium-vector_729473-43.jpg" alt="Logo" id="logo"> <!-- Replace 'logo.png' with your actual logo file -->
+        <h1>Welcome to Main website</h1>
+    </header>
+    <main>
+        <div class="centered">
+            <p>Select a company to proceed:</p>
+            <ul>
+                <li><a href="./entry-page.html?partnerId=CompanyA">Company A</a></li>
+                <li><a href="./entry-page.html?partnerId=CompanyB">Company B</a></li>
+                <li><a href="./entry-page.html?partnerId=CompanyC">Company C</a></li>
+            </ul>
+        </div>
+    </main>
 </body>
 </html>
