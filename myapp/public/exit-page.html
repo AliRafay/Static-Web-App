@@ -1,32 +1,34 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Entry Page</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>Exit Page</title>
 </head>
 <style>
     #loginLink {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 4px;
-    }
-    .centered {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 4px;
     }
 
-    .centered h1, .centered p {
+    .centered {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .centered h1,
+    .centered p {
         text-align: center;
     }
 
@@ -39,39 +41,43 @@
         text-decoration: underline;
     }
 </style>
+
 <body>
     <div class="centered">
         <img width="300px" height="250px" id="companyLogo" src="" alt="Company Logo">
-        <h1>Welcome to <span id="companyName"></span></h1>
-        <button id="loginLink" >Go To Login</button>
+        <h1>Welcome back to <span id="companyName"></span></h1>
+        <button id="loginLink">Redirect To Partner</button>
         <p id="debugUrl"></p> <!-- New paragraph for debugging -->
     </div>
 </body>
 <script>
-    window.onload = function() {
+    window.onload = function () {
         var urlParams = new URLSearchParams(window.location.search);
-        var partner = urlParams.get('partnerId');
+        var token = urlParams.get('id-token');
         document.getElementById('companyName').innerText = partner;
-        var b2cUrl = `https://abdullahtestorg.b2clogin.com/abdullahtestorg.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1A_CUSTOM_RP_SIGNUP_SIGNIN&client_id=84abda6f-ad62-4a6d-9449-fbe69e363838&nonce=defaultNonce&redirect_uri=https://lively-sand-091c2bc0f.5.azurestaticapps.net/exit-page.html&scope=openid&response_type=id_token&prompt=login&partnerId=${partner}`;
-        document.getElementById('debugUrl').innerText = b2cUrl; // Set the text of the new paragraph
-        document.getElementById('loginLink').onclick = function() {
-        window.location.href = b2cUrl;
-        }
+        document.getElementById('debugUrl').innerText = token; 
         var logoSrc;
-        switch(partner) {
+        var redirectUrl;
+        switch (partner) {
             case 'CompanyA':
                 logoSrc = 'https://img.freepik.com/free-vector/bird-colorful-logo-gradient-vector_343694-1365.jpg?size=338&ext=jpg&ga=GA1.1.1395880969.1710028800&semt=ais'; // Replace with the actual path to the logo for Company A
+                redirectUrl = 'https://www.companyA.com'; // Replace with the actual URL for Company A
                 break;
             case 'CompanyB':
                 logoSrc = 'https://static.vecteezy.com/system/resources/previews/023/654/789/original/green-logo-template-it-s-success-concept-png.png'; // Replace with the actual path to the logo for Company B
+                redirectUrl = 'https://www.companyB.com'; // Replace with the actual URL for Company B
                 break;
             case 'CompanyC':
                 logoSrc = 'https://w7.pngwing.com/pngs/973/11/png-transparent-phoenix-logo-design-mark-phoenix-fire-thumbnail.png'; // Replace with the actual path to the logo for Company C
+                redirectUrl = 'https://www.companyC.com'; // Replace with the actual URL for Company C
                 break;
             default:
                 logoSrc = 'defaultLogo.png'; // Replace with the actual path to a default logo
         }
         document.getElementById('companyLogo').src = logoSrc;
+        document.getElementById('loginLink').onclick = function () {
+            window.location.href = redirectUrl;
+        }
     }
 </script>
 </html>
