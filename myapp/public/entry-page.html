@@ -52,7 +52,7 @@
         var urlParams = new URLSearchParams(window.location.search);
         var partner = urlParams.get('partnerId');
         document.getElementById('companyName').innerText = partner;
-        var b2cUrl = `https://abdullahtestorg.b2clogin.com/abdullahtestorg.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1A_CUSTOM_RP_SIGNUP_SIGNIN&client_id=84abda6f-ad62-4a6d-9449-fbe69e363838&nonce=defaultNonce&redirect_uri=https://lively-sand-091c2bc0f.5.azurestaticapps.net/exit-page.html&scope=openid&response_type=id_token&prompt=login&partnerId=${partner}`;
+        var b2cUrl = `https://abdullahtestorg.b2clogin.com/abdullahtestorg.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1A_CUSTOM_RP_SIGNUP_SIGNIN&client_id=84abda6f-ad62-4a6d-9449-fbe69e363838&nonce=defaultNonce&redirect_uri=https://lively-sand-091c2bc0f.5.azurestaticapps.net/exit-page&scope=openid&response_type=id_token&prompt=login&partnerId=${partner}`;
         document.getElementById('debugUrl').innerText = b2cUrl; // Set the text of the new paragraph
         document.getElementById('loginLink').onclick = function() {
         window.location.href = b2cUrl;
